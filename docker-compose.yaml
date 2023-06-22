@@ -1,12 +1,12 @@
+# Конфигурация для сборки и запуска сервера и клиента.
 services:
-  app-server:
+  server-app:
     build:
       context: 'web-chat-server'
       dockerfile: 'Dockerfile'
     ports:
       - '8080:8080'
       - '5005:5005'
-    restart: 'always'
     depends_on:
       - 'database'
     environment:
@@ -20,15 +20,14 @@ services:
       - 'server'
       - 'client'
 
-  app-client:
+  client-app:
     build:
       context: 'web-chat-client'
       dockerfile: 'Dockerfile'
     ports:
       - '80:80'
-    restart: 'always'
     depends_on:
-      - 'app-server'
+      - 'server-app'
     networks:
       - 'client'
 
@@ -43,12 +42,12 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - 'web-chat-data:/var/lib/mysql'
+      - 'data:/var/lib/mysql'
     networks:
       - 'server'
 
 volumes:
-  web-chat-data:
+  data:
 
 networks:
   server:
