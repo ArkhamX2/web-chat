@@ -1,0 +1,8 @@
+[submodule "web-chat-server"]
+	path = web-chat-server
+	url = https://github.com/ArkhamX2/web-chat-server
+	branch = main
+[submodule "web-chat-client"]
+	path = web-chat-client
+	url = https://github.com/ArkhamX2/web-chat-client
+	branch = main
