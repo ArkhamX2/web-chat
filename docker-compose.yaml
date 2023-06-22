@@ -1,0 +1,55 @@
+services:
+  app-server:
+    build:
+      context: 'web-chat-server'
+      dockerfile: 'Dockerfile'
+    ports:
+      - '8080:8080'
+      - '5005:5005'
+    restart: 'always'
+    depends_on:
+      - 'database'
+    environment:
+      DATASOURCE_DATABASE: 'web-chat'
+      DATASOURCE_HOST: 'database'
+      DATASOURCE_PORT: '3306'
+      DATASOURCE_USER: 'arkham'
+      DATASOURCE_PASSWORD: 'secret'
+      JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+    networks:
+      - 'server'
+      - 'client'
+
+  app-client:
+    build:
+      context: 'web-chat-client'
+      dockerfile: 'Dockerfile'
+    ports:
+      - '80:80'
+    restart: 'always'
+    depends_on:
+      - 'app-server'
+    networks:
+      - 'client'
+
+  database:
+    image: 'mariadb:latest'
+    restart: 'always'
+    environment:
+      MARIADB_DATABASE: 'web-chat'
+      MARIADB_PASSWORD: 'secret'
+      MARIADB_ROOT_PASSWORD: 'verysecret'
+      MARIADB_USER: 'arkham'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'web-chat-data:/var/lib/mysql'
+    networks:
+      - 'server'
+
+volumes:
+  web-chat-data:
+
+networks:
+  server:
+  client:
