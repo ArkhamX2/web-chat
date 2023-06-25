@@ -40,7 +40,7 @@ You may also see any lint errors in the console.
 
 ## Documentation
 
-- [Backend](https://github.com/ArkhamX2/web-chat)
+- [Backend](https://github.com/ArkhamX2/web-chat-server)
 - [Frontend](https://github.com/ArkhamX2/web-chat-client)
 
 ## Developers
