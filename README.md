@@ -41,6 +41,7 @@ You may also see any lint errors in the console.
 ## Documentation
 
 - [Backend](https://github.com/ArkhamX2/web-chat)
+- [Frontend](https://github.com/ArkhamX2/web-chat-client)
 
 ## Developers
 
