@@ -5,19 +5,10 @@
    <img src="https://img.shields.io/badge/React%20ver-16.7-informational" alt="React Version">
    <img src="https://img.shields.io/badge/Spring%20ver-3.1.0-informational" alt="Spring Version">
    <img src="https://img.shields.io/badge/App%20ver-0.1-blueviolet" alt="App Version">
-   <img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License">
+   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-## Available Scripts
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-## About
+## Описание
 Веб-чат - веб-приложение, которое позволяет людям обмениваться текстовыми сообщениями с помощью интернета. 
 
 Цель проекта: Создать удобный веб-чат, имеющий наиболее часто используемый функционал: обмен текстовыми сообщениями в чате 1на1 или в группе пользователей (беседе); возможность прикрепить к сообщению документ(картинку, гифку, видео); возможность закреплять сообщения, осуществлять поиск в чате или среди списка всех чатов пользователя.
@@ -38,20 +29,26 @@ You may also see any lint errors in the console.
 2. Рабочий чат
 3. Беседа по интересам
 
-## Documentation
+## Запуск
+### `docker-compose up`
 
-- [Backend](https://github.com/ArkhamX2/web-chat-server)
-- [Frontend](https://github.com/ArkhamX2/web-chat-client)
+Создать и запустить Docker-образы клиента, сервера и базы данных.\
+Открыть [http://localhost](http://localhost) для просмотра в браузере.
 
-## Developers
+## Ссылки
+
+- [Клиент](https://github.com/ArkhamX2/web-chat-client)
+- [Сервер](https://github.com/ArkhamX2/web-chat-server)
+
+## Разработчики
 
 - [T.Latypov](https://github.com/N0tilT) | PM, Frontend
 - [M.Cherepan](https://github.com/PolShestogo) | Frontend
 - [A.Simonov](https://github.com/dubstepTractor) | Backend
-- [M.Islamov](https://github.com/milana-cat)  | Backend
+- [M.Islamov](https://github.com/S1stemus)  | Backend
 - [P.Gromova](https://github.com/jowlly)  | QA
-- [M.Aleksandrova](https://github.com/S1stemus) | QA
+- [M.Aleksandrova](https://github.com/milana-cat) | QA
 
-## License
+## Лицензия
 Проект Webchat распространяется по лицезии MIT
 
