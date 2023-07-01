@@ -1,6 +1,6 @@
 # Конфигурация для сборки и запуска сервера и клиента.
 services:
-  server-app:
+  server:
     build:
       context: 'web-chat-server'
       dockerfile: 'Dockerfile'
@@ -17,19 +17,19 @@ services:
       DATASOURCE_PASSWORD: 'secret'
       JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
     networks:
-      - 'server'
-      - 'client'
+      - 'inner'
+      - 'outer'
 
-  client-app:
+  client:
     build:
       context: 'web-chat-client'
       dockerfile: 'Dockerfile'
     ports:
       - '80:80'
     depends_on:
-      - 'server-app'
+      - 'server'
     networks:
-      - 'client'
+      - 'outer'
 
   database:
     image: 'mariadb:latest'
@@ -44,11 +44,11 @@ services:
     volumes:
       - 'data:/var/lib/mysql'
     networks:
-      - 'server'
+      - 'inner'
 
 volumes:
   data:
 
 networks:
-  server:
-  client:
+  inner:
+  outer:
