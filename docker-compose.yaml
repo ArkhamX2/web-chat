@@ -1,6 +1,7 @@
 # Конфигурация для сборки и запуска сервера и клиента.
 services:
   server:
+    container_name: 'server'
     build:
       context: 'web-chat-server'
       dockerfile: 'Dockerfile'
@@ -21,6 +22,7 @@ services:
       - 'outer'
 
   client:
+    container_name: 'client'
     build:
       context: 'web-chat-client'
       dockerfile: 'Dockerfile'
@@ -32,6 +34,7 @@ services:
       - 'outer'
 
   database:
+    container_name: 'database'
     image: 'mariadb:latest'
     restart: 'always'
     environment:
