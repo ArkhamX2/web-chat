@@ -1,13 +1,12 @@
 # Конфигурация для сборки и запуска сервера и клиента.
 services:
-  server:
-    container_name: 'server'
+  auth-server:
+    container_name: 'auth-server'
     build:
-      context: 'web-chat-server'
+      context: 'web-auth-server'
       dockerfile: 'Dockerfile'
     ports:
       - '8080:8080'
-      - '5005:5005'
     depends_on:
       - 'database'
     environment:
@@ -16,7 +15,25 @@ services:
       DATASOURCE_PORT: '3306'
       DATASOURCE_USER: 'arkham'
       DATASOURCE_PASSWORD: 'secret'
-      JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+    networks:
+      - 'inner'
+      - 'outer'
+
+  server:
+    container_name: 'server'
+    build:
+      context: 'web-chat-server'
+      dockerfile: 'Dockerfile'
+    ports:
+      - '8081:8081'
+    depends_on:
+      - 'database'
+    environment:
+      DATASOURCE_DATABASE: 'web-chat'
+      DATASOURCE_HOST: 'database'
+      DATASOURCE_PORT: '3306'
+      DATASOURCE_USER: 'arkham'
+      DATASOURCE_PASSWORD: 'secret'
     networks:
       - 'inner'
       - 'outer'
@@ -29,6 +46,7 @@ services:
     ports:
       - '80:80'
     depends_on:
+      - 'auth-server'
       - 'server'
     networks:
       - 'outer'
