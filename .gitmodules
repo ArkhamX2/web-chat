@@ -4,7 +4,7 @@
 	branch = main
 [submodule "web-chat-server"]
 	path = web-chat-server
-	url = https://github.com/ArkhamX2/web-chat-server
+	url = https://github.com/ArkhamX2/web-chat-server.git
 	branch = main
 [submodule "web-chat-client"]
 	path = web-chat-client
