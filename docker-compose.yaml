@@ -8,7 +8,8 @@ services:
     ports:
       - '8080:8080'
     depends_on:
-      - 'database'
+      database:
+        condition: 'service_healthy'
     environment:
       DATASOURCE_DATABASE: 'web-chat'
       DATASOURCE_HOST: 'database'
@@ -27,7 +28,8 @@ services:
     ports:
       - '8081:8081'
     depends_on:
-      - 'database'
+      database:
+        condition: 'service_healthy'
     environment:
       DATASOURCE_DATABASE: 'web-chat'
       DATASOURCE_HOST: 'database'
@@ -54,12 +56,17 @@ services:
   database:
     container_name: 'database'
     image: 'mariadb:latest'
-    restart: 'always'
     environment:
       MARIADB_DATABASE: 'web-chat'
       MARIADB_PASSWORD: 'secret'
       MARIADB_ROOT_PASSWORD: 'verysecret'
       MARIADB_USER: 'arkham'
+    healthcheck:
+      test: 'mariadb --password=$$MARIADB_ROOT_PASSWORD --execute "SHOW DATABASES;"'
+      start_period: '5s'
+      interval: '2s'
+      timeout: '10s'
+      retries: 10
     ports:
       - '3306:3306'
     volumes:
